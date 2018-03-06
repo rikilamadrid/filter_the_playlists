@@ -1,27 +1,25 @@
 import React, { Component } from 'react';
 
-class Playlists extends Component {
+class ListCounter extends Component {
     render() {
         const {
-            playlistsName
+            playlists
+        } = this.props;
+
+        const {
+            countersStyle
         } = styles;
 
         return (
-            <div>
-                <img />
-                <h3 styles={playlistsName}>Playlist Name</h3>
-                <ul>
-                    <li>Song 1</li>
-                    <li>Song 2</li>
-                    <li>Song 3</li>
-                </ul>
+            <div style={countersStyle}>
+                <h2>{playlists} playlists</h2>
             </div>
         );
     }
 };
 
 const styles = {
-    playlistsName: {
+    countersStyle: {
         display: 'inline-block',
         width: "33%",
         'margin-bottom': '20px',
@@ -32,4 +30,4 @@ const styles = {
     }
 };
 
-export default Playlists;
+export default ListCounter;

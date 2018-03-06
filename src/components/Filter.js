@@ -13,12 +13,12 @@ class Filter extends Component {
             </div>
         )
     }
-}
+};
 
 const styles = {
     input: {
         color: '#fff'
     }
-}
+};
 
 export default Filter;
