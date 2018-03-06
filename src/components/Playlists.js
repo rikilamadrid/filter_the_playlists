@@ -3,17 +3,22 @@ import React, { Component } from 'react';
 class Playlists extends Component {
     render() {
         const {
-            playlistsName
+            playlistsStyle
         } = styles;
+
+        const {
+            name,
+            songs
+        } = this.props.playlists;
 
         return (
             <div>
                 <img />
-                <h3 styles={playlistsName}>Playlist Name</h3>
+                <h3 styles={playlistsStyle}>{name}</h3>
                 <ul>
-                    <li>Song 1</li>
-                    <li>Song 2</li>
-                    <li>Song 3</li>
+                    {songs.map(song =>
+                        <li>{song.name}</li>
+                    )}
                 </ul>
             </div>
         );
@@ -21,7 +26,7 @@ class Playlists extends Component {
 };
 
 const styles = {
-    playlistsName: {
+    playlistsStyle: {
         display: 'inline-block',
         width: "33%",
         'margin-bottom': '20px',

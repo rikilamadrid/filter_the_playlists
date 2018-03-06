@@ -17,7 +17,13 @@ class Filter extends Component {
 
 const styles = {
     input: {
-        color: '#fff'
+        display: 'inline-block',
+        width: "33%",
+        'margin-bottom': '20px',
+        'font-size': '20px',
+        'line-height': '30px',
+        'font-family': 'Quicksand',
+        'text-align': 'center'
     }
 };
 

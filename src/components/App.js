@@ -16,6 +16,8 @@ class App extends Component {
         this.setState({ serverData: fakeServerData });
     }
 
+
+
     render() {
         const {
             appHeader,
@@ -48,10 +50,9 @@ class App extends Component {
                     <TimeCounter playlists={totalTime}/>
                 </div>
                 <div>
-                    <Playlists />
-                    <Playlists />
-                    <Playlists />
-                    <Playlists />
+                    {playlists.map(playlist =>
+                        <Playlists playlists={playlist} />
+                    )}
                 </div>
             </div>
         );
