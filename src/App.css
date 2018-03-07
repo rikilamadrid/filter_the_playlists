@@ -1,6 +1,7 @@
 .App-logo {
   animation: App-logo-spin infinite 3s linear;
   height: 90px;
+  align-self: center;
 }
 
 @keyframes App-logo-spin {

@@ -9,20 +9,22 @@ import '../App.css';
 class App extends Component {
     constructor(props) {
         super(props);
-        this.state = {serverData: {}}
+        this.state = {
+            serverData: {},
+            filterInput: ''
+        }
     }
 
     componentWillMount() {
         this.setState({ serverData: fakeServerData });
     }
 
-
-
     render() {
         const {
             appHeader,
             app,
-            userStyle
+            userStyle,
+            pickle
         } = styles;
 
         const {
@@ -30,7 +32,13 @@ class App extends Component {
             playlists
         } = this.state.serverData.user;
 
-        let totalSongs = playlists.reduce((songs, eachPlaylists) => {
+        let filteredPlaylists = playlists
+            .filter(playlist =>
+                playlist.name.toLowerCase().includes(
+                    this.state.filterInput.toLowerCase())
+        );
+
+        let totalSongs = filteredPlaylists.reduce((songs, eachPlaylists) => {
             return songs.concat(eachPlaylists.songs)
         }, []);
 
@@ -44,14 +52,14 @@ class App extends Component {
                   <img src={logo} className="App-logo" />
                   <h1 style={userStyle}>Sounds Like {name}'s playlist:</h1>
                 </div>
-                <div>
-                    <Filter />
-                    <ListCounter playlists={playlists.length} />
+                <div style={{display: 'flex', justifyContent: 'center'}}>
+                    <ListCounter playlists={filteredPlaylists.length} />
+                    <Filter onChange={text => {this.setState({filterInput: text})}}/>
                     <TimeCounter playlists={totalTime}/>
                 </div>
-                <div>
-                    {playlists.map(playlist =>
-                        <Playlists playlists={playlist} />
+                <div style={{display: 'flex', justifyContent: 'center'}}>
+                    {filteredPlaylists.map(playlist =>
+                            <Playlists playlists={playlist} />
                     )}
                 </div>
             </div>
@@ -86,6 +94,30 @@ let fakeServerData = {
                     {name: '9 am', duration: 9191},
                     {name: 'Porcelain', duration:3333}
                 ]
+            },
+            {
+                name: 'Reggaeton',
+                songs: [
+                    {name: 'Dale', duration: 2554},
+                    {name: 'Gasolina', duration: 3671},
+                    {name: 'Para que retozen', duration: 5555}
+                ]
+            },
+            {
+                name: 'Soundtracks',
+                songs: [
+                    {name: 'Shape of Water', duration: 7452},
+                    {name: 'Amelie', duration: 9777},
+                    {name: 'Interstellar', duration: 8888}
+                ]
+            },
+            {
+                name: 'Classical',
+                songs: [
+                    {name: 'Mozart', duration: 6492},
+                    {name: 'Beethoven', duration: 3554},
+                    {name: 'Chopin', duration: 3321}
+                ]
             }
         ]
     }
@@ -96,12 +128,17 @@ const styles = {
       backgroundColor: '#34443f',
       height: 180,
       padding: 20,
-      color: 'white'
+      color: 'white',
+      'text-align': 'center'
     },
     userStyle: {
         fontSize: '1.5em',
         color: '#47d23b',
         fontSize: '10'
+    },
+    pickle: {
+        'text-align': 'center',
+        display: 'inline-block',
     }
 };
 

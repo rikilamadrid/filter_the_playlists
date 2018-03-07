@@ -1,15 +1,27 @@
 import React, { Component } from 'react';
+import logo from '../favicon.ico';
 
 class Filter extends Component {
+
     render() {
         const {
-            input
+            input,
+            icon
         } = styles;
+
+        const {
+            onChange
+        } = this.props;
 
         return (
             <div>
-                <img />
-                Filter: <input style={input} type="text" />
+                <i style ={icon} class="fas fa-search"> <img/></i>
+                <input
+                    style={input}
+                    type="text"
+                    onKeyUp={event => onChange(event.target.value)}
+                />
+
             </div>
         )
     }
@@ -17,13 +29,18 @@ class Filter extends Component {
 
 const styles = {
     input: {
-        display: 'inline-block',
-        width: "33%",
-        'margin-bottom': '20px',
-        'font-size': '20px',
-        'line-height': '30px',
-        'font-family': 'Quicksand',
-        'text-align': 'center'
+        color: 'black',
+        border: '1px solid black',
+        'font-size': '12px',
+        padding: '5px',
+        'justifyContent': 'center',
+        'font-family': 'Quicksand'
+    },
+    icon: {
+        'margin-top': '30px',
+        'padding-top': '10px',
+        'padding-right': '15px'
+
     }
 };
 
