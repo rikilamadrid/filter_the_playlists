@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import logo from '../favicon.ico';
 import ListCounter from './ListCounter';
 import TimeCounter from './TimeCounter';
-import Filter from './Filter';
 import Playlists from './Playlists';
 import '../App.css';
 
@@ -24,7 +23,9 @@ class App extends Component {
             appHeader,
             app,
             userStyle,
-            pickle
+            pickle,
+            input,
+            icon
         } = styles;
 
         const {
@@ -46,6 +47,8 @@ class App extends Component {
             return Math.round(sum + totalSongs.duration/3600)
         }, 0);
 
+        let onChange = text => {this.setState({filterInput: text})}
+
         return (
             <div>
                 <div style={appHeader}>
@@ -54,7 +57,15 @@ class App extends Component {
                 </div>
                 <div style={{display: 'flex', justifyContent: 'center'}}>
                     <ListCounter playlists={filteredPlaylists.length} />
-                    <Filter onChange={text => {this.setState({filterInput: text})}}/>
+                    <div>
+                        <i style ={icon} class="fas fa-search"> <img/></i>
+                        <input
+                            placeholder={"sounds like a match:"}
+                            style={input}
+                            type="text"
+                            onKeyUp={event => onChange(event.target.value)}
+                        />
+                    </div>
                     <TimeCounter playlists={totalTime}/>
                 </div>
                 <div style={{display: 'flex', justifyContent: 'center'}}>
@@ -139,6 +150,20 @@ const styles = {
     pickle: {
         'text-align': 'center',
         display: 'inline-block',
+    },
+    input: {
+        color: 'black',
+        border: '1px solid black',
+        'font-size': '12px',
+        padding: '5px',
+        'justifyContent': 'center',
+        'font-family': 'Quicksand'
+    },
+    icon: {
+        'margin-top': '30px',
+        'padding-top': '10px',
+        'padding-right': '15px'
+
     }
 };
 

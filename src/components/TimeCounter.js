@@ -10,9 +10,6 @@ class TimeCounter extends Component {
             countersStyle
         } = styles;
 
-
-
-
         return (
             <div style={countersStyle}>
                 <h2>{playlists} hours</h2>
